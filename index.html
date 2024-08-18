@@ -58,7 +58,7 @@
         <img src="img/dataset.png" alt="Result Image Dataset">
         <!-- Table Description -->
         <div class="description">
-            <h2>Table Description</h2>
+            <h2>Deskripsi Tabel</h2>
             <p>Tabel <code><strong>ms_pelanggan</strong></code> berisi tentang identitas pelanggan, dengan detail atribut/kolom sebagai berikut:</p>
             <ul>
                 <li><code>no_urut</code>: row pada tabel</li>
@@ -105,7 +105,7 @@ SELECT * FROM ms_produk WHERE harga > 50000 and harga < 150000;
             </pre>
             <p>Output:</p>
             <img src="img/query_1.png" alt="Result Query 1">
-            <p>Explanation: Query tersebut menampilkan daftar produk dengan range harga 50.000 - 150.000.
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan daftar produk dengan range harga 50.000 - 150.000.
                 Dalam range tersebut <code>"Flashdisk DQLab 64 GB"</code> harga terendah, 
                 dan <code>"Gift Voucher DQLab 100rb"</code> harga tertinggi.</p>
         </div>
@@ -124,7 +124,7 @@ SELECT * FROM ms_produk WHERE nama_produk LIKE '%Flashdisk%';<br>
             </pre>
             <p>Output:</p>
             <img src="img/query_2.png" alt="Result Query 2">
-            <p>Explanation: Query tersebut menampilkan daftar produk Flashdisk.
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan daftar produk Flashdisk.
                 Terdapat 2 produk Flashdisk pada DQLab Mart yaitu <code>"Flashdisk DQLab 64 GB"</code>
                 dan <code>"Flashdisk DQLab 32 GB"</code>.</p>
         </div>
@@ -145,7 +145,7 @@ WHERE
             </pre>
             <p>Output:</p>
             <img src="img/query_3.png" alt="Result Query 3">
-            <p>Explanation: Query tersebut menampilkan daftar pelanggan yang memiliki gelar.
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan daftar pelanggan yang memiliki gelar.
                 Sehingga dapat dilihat, hanya ada 3 pelanggan yang memiliki gelar.
             </p>
         </div>
@@ -162,7 +162,7 @@ SELECT nama_pelanggan FROM ms_pelanggan ORDER BY nama_pelanggan ASC;
             </pre>
             <p>Output:</p>
             <img src="img/query_4.png" alt="Result Query 4">
-            <p>Explanation: Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z).</p>
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z).</p>
         </div>
 
         <!-- Query 5 -->
@@ -187,7 +187,7 @@ ELSE nama_pelanggan END ASC;<br>
             </pre>
             <p>Output:</p>
             <img src="img/query_5.png" alt="Result Query 5">
-            <p>Explanation: Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z) tanpa gelar.
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z) tanpa gelar.
                 Dari hasil tersebut, walaupun nama pelanggan <code>"Irwan Setianto"</code>
                 dan <code>"Ir. Ita Nugraha"</code> sama-sama diawali "Ir", tetapi karena gelar diabaikan, 
                 pelangga bernama <code>"Ita Nugraha"</code> muncul setelah <code>"Irwan Setianto"</code>
@@ -214,7 +214,7 @@ FROM ms_pelanggan);
             </pre>
             <p>Output:</p>
             <img src="img/query_6.png" alt="Result Query 6">
-            <p>Explanation: Query tersebut menampilkan nama pelanggan yang memiliki nama paling panjang.
+            <p><strong>Interpretasi:</strong> Query tersebut menampilkan nama pelanggan yang memiliki nama paling panjang.
                 Dapat dilihat, pelanggan yang memiliki nama paling panjang adalah <code>"Djoko Wardoyo, Drs."</code>.
             </p>
         </div>
@@ -257,7 +257,7 @@ WHERE LENGTH(nama_pelanggan) IN (
             </pre>
             <p>Output:</p>
             <img src="img/query_7.png" alt="Result Query 7">
-            <p>Explanation: Hasil yang ditampilkan pelanggan yang memiliki nama paling panjang yaitu <code>"Djoko Wardoyo, Drs."</code>.
+            <p><strong>Interpretasi:</strong> Hasil yang ditampilkan pelanggan yang memiliki nama paling panjang yaitu <code>"Djoko Wardoyo, Drs."</code>.
                 Sedangkan pelanggan yang memiliki nama paling pendek <code>"Heidi Goh"</code>.
             </p>
         </div>
@@ -282,7 +282,7 @@ ORDER BY total_qty DESC LIMIT 2;
             </pre>
             <p>Output:</p>
             <img src="img/query_8.png" alt="Result Query 8">
-            <p>Explanation: Dari hasil tersebut, terdapat 2 produk yang paling banyak terjual yaitu 
+            <p><strong>Interpretasi:</strong> Dari hasil tersebut, terdapat 2 produk yang paling banyak terjual yaitu 
                 <code>"Flashdisk DQLab 32 GB"</code> dan <code>"Gantungan Kunci DQLab "</code> 
                 masing-masing dengan kuantitas sebanyak 7 item.
             </p>
@@ -312,7 +312,7 @@ ORDER BY total_harga DESC LIMIT 1;
             </pre>
             <p>Output:</p>
             <img src="img/query_9.png" alt="Result Query 9">
-            <p>Explanation: Dari hasil tersebut pelanggan yang paling banyak menghabiskan uangnya untuk belanja?
+            <p><strong>Interpretasi:</strong> Dari hasil tersebut pelanggan yang paling banyak menghabiskan uangnya untuk belanja?
                 yaitu <code>"Agus Cahyono"</code> dengan total harga 700.000.
             </p>
         </div>
@@ -348,7 +348,7 @@ GROUP BY kode_pelanggan, nama_pelanggan, alamat;<br>
             </pre>
             <p>Output:</p>
             <img src="img/query_10.png" alt="Result Query 10">
-            <p>Explanation: Dari hasil tersebut, menunjukkan terdapat 5 pelanggan yang belum pernah berbelanja.
+            <p><strong>Interpretasi:</strong> Dari hasil tersebut, menunjukkan terdapat 5 pelanggan yang belum pernah berbelanja.
             </p>
         </div>
 
@@ -375,7 +375,7 @@ HAVING jumlah_detail > 1;
             </pre>
             <p>Output:</p>
             <img src="img/query_11.png" alt="Result Query 11">
-            <p>Explanation: Dari hasil tersebut, terdapat 5 transaksi yang dengan jumlah produk lebih dari satu jenis produk.
+            <p><strong>Interpretasi:</strong> Dari hasil tersebut, terdapat 5 transaksi yang dengan jumlah produk lebih dari satu jenis produk.
                 Jumlah transaksi produk terbanyak yaitu 8 oleh pelanggan bernama <code>"Agus Cahyono"</code>.
             </p>
         </div>

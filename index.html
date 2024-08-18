@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #DACBA9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .section {
+            margin-top: 30px;
+        }
+        h2 {
+            color: #000000;
+        }
+        h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #E3DEC6;
+            padding: 5px;
+            font-style: italic;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DACBA9;
+            border-radius: 4px;
+            /* margin-top: 1px; */
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            border-top: 1px solid #DACBA9;
+            background-color: #DACBA9;
+        }
+        footer p {
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Engineer Challenge</h1>
+        <p>Dataset yang digunakan merupakan data dari DQLab Mart. Terdapat 4 tabel di dalam database tersebut.</p>
+        <img src="img/dataset.png" alt="Result Image Dataset">
+        <!-- Table Description -->
+        <div class="description">
+            <h2>Deskripsi Tabel</h2>
+            <p>Tabel <code><strong>ms_pelanggan</strong></code> berisi tentang identitas pelanggan, dengan detail atribut/kolom sebagai berikut:</p>
+            <ul>
+                <li><code>no_urut</code>: row pada tabel</li>
+                <li><code>kode_pelanggan</code>: kode setiap pelanggan yang bertransaksi</li>
+                <li><code>nama_pelanggan</code>: nama dari pelanggan yang bertransaksi</li>
+                <li><code>alamat</code>: tempat pelanggan tinggal</li>
+            </ul>
+            <p>Tabel <code><strong>ms_products</strong></code> berisi tentang detail pada produk, dengan detail atribut/kolom sebagai berikut:</p>
+            <ul>
+                <li><code>no_urut</code>: row pada tabel</li>
+                <li><code>kode_produk</code>: kode yang tertera pada produk</li>
+                <li><code>nama_produk</code>: nama produk yang diperjualbelikan</li>
+                <li><code>harga</code>: harga pada produk yang diperjualbelikan</li>
+            </ul>
+            <p>Tabel <code><strong>tr_penjualan</strong></code> berisi tentang transaksi penjualan, dengan detail atribut/kolom sebagai berikut:</p>
+            <ul>
+                <li><code>kode_transaksi</code>: kode transaksi yang dilakukan oleh pelanggan/customer</li>
+                <li><code>kode_pelanggan</code>: kode setiap pelanggan yang bertransaksi</li>
+                <li><code>tanggal_transaksi</code>: waktu dimana transaksi dilakukan</li>
+            </ul>
+            <p>Tabel <code><strong>tr_penjualan_detail</strong></code> berisi tentang transaksi penjualan secara detail, dengan detail atribut sebagai berikut:</p>
+            <ul>
+                <li><code>kode_transaksi</code>: kode transaksi yang dilakukan oleh pelanggan/customer</li>
+                <li><code>kode_produk</code>: kode yang tertera pada produk</li>
+                <li><code>qty</code>: jumlah kuantitas produk yang tersedia</li>
+                <li><code>harga_satuan</code>: harga per produk/kuantitas</li>
+            </ul>
+        </div>
+
+        <!-- Query 1 -->
+        <div class="section">
+            <h2>Query</h2>
+            <h3>1. Produk DQLab Mart</h3>
+            <p>Mengacu pada table ms_produk, tampilkan daftar produk yang memiliki harga antara 50.000 and 150.000. 
+                Nama kolom yang harus ditampilkan: no_urut, kode_produk, nama_produk, dan harga.</p>
+            <p>Query:</p>
+            <pre> 
+-- Query 1
+SELECT no_urut, kode_produk, nama_produk, harga FROM ms_produk WHERE harga BETWEEN 50000 and 150000;<br>
+-- Query 2
+SELECT * FROM ms_produk WHERE harga BETWEEN 50000 AND 150000;<br>
+-- Query 3
+SELECT * FROM ms_produk WHERE harga > 50000 and harga < 150000;
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_1.png" alt="Result Query 1">
+            <p>Explanation: Query tersebut menampilkan daftar produk dengan range harga 50.000 - 150.000.
+                Dalam range tersebut <code>"Flashdisk DQLab 64 GB"</code> harga terendah, 
+                dan <code>"Gift Voucher DQLab 100rb"</code> harga tertinggi.</p>
+        </div>
+
+        <!-- Query 2 -->
+        <div class="section">
+            <h3>2. Thumb drive di DQLab Mart</h3>
+            <p>Tampilkan semua produk yang mengandung kata Flashdisk. 
+                Nama kolom yang harus ditampilkan: no_urut, kode_produk, nama_produk, dan harga.</p>
+            <p>Query:</p>
+            <pre> 
+-- Query 1
+SELECT no_urut, kode_produk, nama_produk, harga FROM ms_produk WHERE nama_produk LIKE '%Flashdisk%';<br>
+-- Query 2
+SELECT * FROM ms_produk WHERE nama_produk LIKE '%Flashdisk%';<br>
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_2.png" alt="Result Query 2">
+            <p>Explanation: Query tersebut menampilkan daftar produk Flashdisk.
+                Terdapat 2 produk Flashdisk pada DQLab Mart yaitu <code>"Flashdisk DQLab 64 GB"</code>
+                dan <code>"Flashdisk DQLab 32 GB"</code>.</p>
+        </div>
+
+        <!-- Query 3 -->
+        <div class="section">
+            <h3>3. Pelanggan Bergelar</h3>
+            <p>Tampilkan hanya nama-nama pelanggan yang hanya memiliki gelar-gelar berikut: S.H, Ir. dan Drs. 
+                Nama kolom yang harus ditampilkan: no_urut, kode_pelanggan, nama_pelanggan, dan alamat.</p>
+            <p>Query:</p>
+            <pre> 
+SELECT no_urut, kode_pelanggan, nama_pelanggan, alamat
+FROM ms_pelanggan
+WHERE
+  nama_pelanggan LIKE "%S.H." OR
+  nama_pelanggan LIKE "Ir.%" OR
+  nama_pelanggan LIKE "%Drs.";
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_3.png" alt="Result Query 3">
+            <p>Explanation: Query tersebut menampilkan daftar pelanggan yang memiliki gelar.
+                Sehingga dapat dilihat, hanya ada 3 pelanggan yang memiliki gelar.
+            </p>
+        </div>
+
+        <!-- Query 4 -->
+        <div class="section">
+            <h3>4. Mengurutkan Nama Pelanggan</h3>
+            <p>Tampilkan nama-nama pelanggan dan urutkan hasilnya berdasarkan kolom nama_pelanggan dari yang terkecil ke yang terbesar (A ke Z).
+                Nama kolom yang harus ditampilkan: nama_pelanggan.
+            </p>
+            <p>Query:</p>
+            <pre> 
+SELECT nama_pelanggan FROM ms_pelanggan ORDER BY nama_pelanggan ASC;
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_4.png" alt="Result Query 4">
+            <p>Explanation: Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z).</p>
+        </div>
+
+        <!-- Query 5 -->
+        <div class="section">
+            <h3>5. Mengurutkan Nama Pelanggan Tanpa Gelar</h3>
+            <p>Tampilkan nama-nama pelanggan dan urutkan hasilnya berdasarkan kolom nama_pelanggan dari yang terkecil ke yang terbesar (A ke Z), 
+                namun gelar tidak boleh menjadi bagian dari urutan. Contoh: Ir. Agus Nugraha harus berada di atas Heidi Goh.
+                Nama kolom yang harus ditampilkan: nama_pelanggan.
+            </p>
+            <p>Query:</p>
+            <pre> 
+-- Query 1
+SELECT nama_pelanggan FROM ms_pelanggan ORDER BY
+CASE WHEN LEFT(nama_pelanggan, 3) = 'Ir.'
+THEN SUBSTRING(nama_pelanggan, 5, 100)
+ELSE nama_pelanggan END ASC;<br>
+-- Query 2
+SELECT nama_pelanggan FROM ms_pelanggan ORDER BY
+CASE WHEN LEFT (nama_pelanggan, 3) = 'Ir.'
+THEN SUBSTRING(nama_pelanggan, 5)
+ELSE nama_pelanggan END ASC;<br>
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_5.png" alt="Result Query 5">
+            <p>Explanation: Query tersebut menampilkan daftar nama pelanggan berdasarkan nama (A - Z) tanpa gelar.
+                Dari hasil tersebut, walaupun nama pelanggan <code>"Irwan Setianto"</code>
+                dan <code>"Ir. Ita Nugraha"</code> sama-sama diawali "Ir", tetapi karena gelar diabaikan, 
+                pelangga bernama <code>"Ita Nugraha"</code> muncul setelah <code>"Irwan Setianto"</code>
+                sesuai urutan abjad.
+            </p>
+        </div>
+
+        <!-- Query 6 -->
+        <div class="section">
+            <h3>6. Nama Pelanggan yang Paling Panjang</h3>
+            <p>Tampilkan nama pelanggan yang memiliki nama paling panjang. 
+                Jika ada lebih dari 1 orang yang memiliki panjang nama yang sama, tampilkan semuanya.
+                Nama kolom yang harus ditampilkan: nama_pelanggan.
+            </p>
+            <p>Query:</p>
+            <pre> 
+SELECT nama_pelanggan 
+FROM ms_pelanggan
+WHERE LENGTH(nama_pelanggan)
+IN (
+  SELECT MAX(LENGTH(nama_pelanggan)
+)
+FROM ms_pelanggan);
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_6.png" alt="Result Query 6">
+            <p>Explanation: Query tersebut menampilkan nama pelanggan yang memiliki nama paling panjang.
+                Dapat dilihat, pelanggan yang memiliki nama paling panjang adalah <code>"Djoko Wardoyo, Drs."</code>.
+            </p>
+        </div>
+
+        <!-- Query 7 -->
+        <div class="section">
+            <h3>7. Nama Pelanggan yang Paling Panjang</h3>
+            <p>Tampilkan nama orang yang memiliki nama paling panjang (pada row atas), 
+                dan nama orang paling pendek (pada row setelahnya). 
+                Gelar menjadi bagian dari nama. 
+                Jika ada lebih dari satu nama yang paling panjang atau paling pendek, harus ditampilkan semuanya.
+                Nama kolom yang harus ditampilkan: nama_pelanggan.
+            </p>
+            <p>Query:</p>
+            <pre> 
+-- Query 1
+SELECT * FROM (
+    SELECT nama_pelanggan
+    FROM ms_pelanggan
+    ORDER BY length(nama_pelanggan) desc,
+    nama_pelanggan limit 1
+) as a
+UNION
+SELECT * FROM (
+    SELECT nama_pelanggan
+    FROM ms_pelanggan
+    ORDER BY length(nama_pelanggan),
+    nama_pelanggan limit 1
+) as b;<br>
+-- Query 2
+SELECT nama_pelanggan
+FROM ms_pelanggan
+WHERE LENGTH(nama_pelanggan) IN (
+    SELECT MAX(LENGTH(nama_pelanggan))
+    FROM ms_pelanggan
+) OR LENGTH(nama_pelanggan) IN (
+    SELECT MIN(LENGTH(nama_pelanggan))
+    FROM ms_pelanggan
+) ORDER BY LENGTH(nama_pelanggan) DESC;<br>
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_7.png" alt="Result Query 7">
+            <p>Explanation: Hasil yang ditampilkan pelanggan yang memiliki nama paling panjang yaitu <code>"Djoko Wardoyo, Drs."</code>.
+                Sedangkan pelanggan yang memiliki nama paling pendek <code>"Heidi Goh"</code>.
+            </p>
+        </div>
+
+        <!-- Query 8 -->
+        <div class="section">
+            <h3>8. Kuantitas Produk yang Banyak Terjual</h3>
+            <p>Tampilkan produk yang paling banyak terjual dari segi kuantitas. 
+                Jika ada lebih dari 1 produk dengan nilai yang sama, tampilkan semua produk tersebut.
+                Nama kolom yang harus ditampilkan: kode_produk, nama_produk, total_qty.
+            </p>
+            <p>Query:</p>
+            <pre> 
+SELECT
+    tr_penjualan_detail.kode_produk,
+    ms_produk.nama_produk,
+    sum(qty) AS total_qty
+FROM tr_penjualan_detail
+INNER JOIN ms_produk ON tr_penjualan_detail.kode_produk = ms_produk.kode_produk
+GROUP BY kode_produk, nama_produk
+ORDER BY total_qty DESC LIMIT 2;
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_8.png" alt="Result Query 8">
+            <p>Explanation: Dari hasil tersebut, terdapat 2 produk yang paling banyak terjual yaitu 
+                <code>"Flashdisk DQLab 32 GB"</code> dan <code>"Gantungan Kunci DQLab "</code> 
+                masing-masing dengan kuantitas sebanyak 7 item.
+            </p>
+        </div>
+
+        <!-- Query 9 -->
+        <div class="section">
+            <h3>9. Pelanggan Paling Tinggi Nilai Belanjanya</h3>
+            <p>Siapa saja pelanggan yang paling banyak menghabiskan uangnya untuk belanja? 
+                Jika ada lebih dari 1 pelanggan dengan nilai yang sama, tampilkan semua pelanggan tersebut.
+                Nama kolom yang harus ditampilkan: kode_pelanggan, nama_pelanggan, total_harga
+            </p>
+            <p>Query:</p>
+            <pre> 
+SELECT
+    a.kode_pelanggan,
+    a.nama_pelanggan,
+    sum(c.harga_satuan*c.qty) as total_harga
+FROM
+    ms_pelanggan a
+    JOIN tr_penjualan b ON a.kode_pelanggan=b.kode_pelanggan
+    JOIN tr_penjualan_detail c ON b.kode_transaksi=c.kode_transaksi
+GROUP BY
+    a.kode_pelanggan,
+    a.nama_pelanggan
+ORDER BY total_harga DESC LIMIT 1;
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_9.png" alt="Result Query 9">
+            <p>Explanation: Dari hasil tersebut pelanggan yang paling banyak menghabiskan uangnya untuk belanja?
+                yaitu <code>"Agus Cahyono"</code> dengan total harga 700.000.
+            </p>
+        </div>
+
+        <!-- Query 10 -->
+        <div class="section">
+            <h3>10. Pelanggan yang Belum Pernah Berbelanja</h3>
+            <p>Tampilkan daftar pelanggan yang belum pernah melakukan transaksi. 
+                Nama kolom yang harus ditampilkan: kode_pelanggan, nama_pelanggan, alamat.
+            </p>
+            <p>Query:</p>
+            <pre> 
+-- Query 1
+SELECT
+    a.kode_pelanggan,
+    a.nama_pelanggan,
+    a.alamat
+FROM
+    ms_pelanggan a
+WHERE a.kode_pelanggan NOT IN (
+    SELECT kode_pelanggan
+    FROM tr_penjualan;
+);<br>
+-- Query 2
+SELECT kode_pelanggan, nama_pelanggan, alamat
+FROM ms_pelanggan
+WHERE kode_pelanggan
+NOT IN (
+    SELECT kode_pelanggan 
+    FROM tr_penjualan
+)
+GROUP BY kode_pelanggan, nama_pelanggan, alamat;<br>
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_10.png" alt="Result Query 10">
+            <p>Explanation: Dari hasil tersebut, menunjukkan terdapat 5 pelanggan yang belum pernah berbelanja.
+            </p>
+        </div>
+
+        <!-- Query 11 -->
+        <div class="section">
+            <h3>11. Transaksi Belanja dengan Daftar Belanja lebih dari 1 Produk</h3>
+            <p>Tampilkan transaksi-transaksi yang memiliki jumlah item produk lebih dari 1 jenis produk. 
+                Dengan lain kalimat, tampilkan transaksi-transaksi yang memiliki jumlah baris data pada table tr_penjualan_detail lebih dari satu.
+                Nama kolom yang harus ditampilkan:  kode_transaksi, kode_pelanggan, nama_pelanggan, tanggal_transaksi, jumlah_detail.
+            </p>
+            <p>Query:</p>
+            <pre> 
+SELECT
+    a.kode_transaksi,
+    b.kode_pelanggan,
+    b.nama_pelanggan,
+    a.tanggal_transaksi,
+    COUNT(c.kode_produk) AS jumlah_detail
+FROM tr_penjualan a
+INNER JOIN ms_pelanggan b ON a.kode_pelanggan = b.kode_pelanggan
+INNER JOIN tr_penjualan_detail c ON a.kode_transaksi = c.kode_transaksi
+GROUP BY a.kode_transaksi, b.kode_pelanggan, b.nama_pelanggan, a.tanggal_transaksi
+HAVING jumlah_detail > 1;
+            </pre>
+            <p>Output:</p>
+            <img src="img/query_11.png" alt="Result Query 11">
+            <p>Explanation: Dari hasil tersebut, terdapat 5 transaksi yang dengan jumlah produk lebih dari satu jenis produk.
+                Jumlah transaksi produk terbanyak yaitu 8 oleh pelanggan bernama <code>"Agus Cahyono"</code>.
+            </p>
+        </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Eva Nurkhofifah. All rights reserved.</p>
+    </footer>
+</body>
+</html>
